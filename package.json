@@ -1,0 +1,57 @@
+{
+  "name": "frist-project",
+  "version": "1.0.0",
+  "description": "第一次尝试使用npm webpack创建项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --inline --config webpack.dev.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yyxie/npmWebpackTest.git"
+  },
+  "keywords": [
+    "npm",
+    "webpack",
+    "react",
+    "reflux"
+  ],
+  "author": "解园园",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yyxie/npmWebpackTest/issues"
+  },
+  "homepage": "https://github.com/yyxie/npmWebpackTest#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "antd": "^2.13.3",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-fa": "^5.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reflux": "^6.4.1",
+    "reflux-promise": "^1.0.4",
+    "style-loader": "^0.18.2"
+  }
+}
