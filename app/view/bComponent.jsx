@@ -28,7 +28,11 @@ class Bcomponent extends React.Component {
 
     onSearchClick() {
         debugger;
-        TestAction.getList().then(result => {
+        const request = TestAction.getList.triggerAsync();
+
+        console.log(request);
+
+        request.then(result => {
 
             if (this.existed) {
                 if (result.errorCode == 0 && result.data) {
@@ -37,15 +41,17 @@ class Bcomponent extends React.Component {
                 } else
                     this.setState({list: result.data});
             }
-        }, err => {});
+        }).catch( err => {
+            alert("warning");
+        });
     }
 
-   /* _onChange() {
-        if (this.existed) {
-            // 重新获取TodoStore的数据，并通过调用setState，触发re-render
-            this.setState({list: TestStore.getInfoState()});
-        }
-    }*/
+    /* _onChange() {
+     if (this.existed) {
+     // 重新获取TodoStore的数据，并通过调用setState，触发re-render
+     this.setState({list: TestStore.getInfoState()});
+     }
+     }*/
 
     render() {
         return (
