@@ -1,9 +1,15 @@
 .logo {
     width: 64px;
     height: 64px;
-    background: url('../../img/logo.png') no-repeat;
-    border-radius: 6px;
-    margin: 16px 28px 16px 0;
-    float: left;
+    background: url('../../img/logo.png') no-repeat ;
+    margin: 10px auto;
 
+}
+
+.main-content {
+    background: #fff;
+    padding: 24px;
+    margin: 0;
+    max-height: calc(100% - 128px);
+    overflow-y: auto;
 }

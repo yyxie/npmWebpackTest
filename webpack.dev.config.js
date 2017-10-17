@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 
 // 项目根路径
@@ -43,7 +44,8 @@ var config = {
                 exclude: /node_modules/,//指排除的文件夹
                 //include: SRC_PATH,      //指包含的文件夹
                 use: {
-                    loader: "babel-loader"//字符串或者数组, 处理匹配到的文件。
+                    loader: "babel-loader",//字符串或者数组, 处理匹配到的文件。
+
                 }
 
             },
@@ -55,15 +57,16 @@ var config = {
                     use: "css-loader"
                 })
             },
-            {
-                test: /\.less$/,
-                loader: "less-loader!style-loader"
-            }, {
+             {
+                 test: /\.less$/,
+                 loader: "less-loader!style-loader"
+             }, {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url-loader?limit=8192"
             },
         ]
     },
+
     resolve: {
         alias: {},
         extensions: ['.webpack.js', '.web.js', '.js', '.jsx']
@@ -83,6 +86,7 @@ var config = {
             filename: '[name].css',
             allChunks: true
         }),
+
     ]
 };
 
