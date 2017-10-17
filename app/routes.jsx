@@ -10,7 +10,6 @@ import bComponent from './view/bComponent.jsx';
 import ReduxComponent from './view/ReduxTest.jsx';
 import Parent from './view/Parent.jsx';
 import Login from './view/login.jsx';
-import Wrapper from './view/entry/wrapper.jsx';
 import NoMatch from './view/noMatch.jsx';
 
 

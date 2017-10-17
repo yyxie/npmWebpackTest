@@ -3,15 +3,10 @@ import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import {Link, withRouter, Switch, Route} from 'react-router-dom';
 import './style.css';
 import Util from './util.jsx';
-import Detail from '../detail.jsx';
-import aComponent from '../aComponent.jsx';
-import bComponent from '../bComponent.jsx';
-import ReduxComponent from '../ReduxTest.jsx';
-import Parent from '../Parent.jsx';
-
+import MenuData from './menu.config.js';
 
 const {SubMenu} = Menu;
-const {Header, Content, Sider} = Layout;
+const { Header, Footer, Sider, Content } = Layout;
 const breadcrumbNameMap = {
     '/a': 'a',
     '/b': 'b',
@@ -25,6 +20,10 @@ export default withRouter(class OutApp extends React.Component {
     /*const OutApp = withRouter((props) => {*/
     constructor(props) {
         super(props);
+        this.state = {
+            defaultOpenKeys: ['reflux test'],
+            defaultSelectedKeys: ['a']
+        }
     }
 
     componentWillMount() {
@@ -32,8 +31,44 @@ export default withRouter(class OutApp extends React.Component {
         Util.requireAuth(this.props.history, this.props.location);
     }
 
+    renderMenu = (data) => {
+        const result = [];
+
+        data.forEach((item, index) => {
+
+            if (!item.children) {
+                result.push(
+                    <Menu.Item key={item.key}>
+                        <Link to={item.path}>
+                            {item.icon ? <Icon type={item.icon}/> : null}
+                            <span className="nav-text">{item.name}</span>
+                        </Link>
+                    </Menu.Item>
+                )
+            } else {
+                result.push(
+                    <SubMenu
+                        key={item.key}
+                        title={
+                            <span>
+                  {item.icon ? <Icon type={item.icon}/> : null}
+                                <span className="nav-text">{item.name}</span>
+                </span>
+                        }
+                    >
+                       {this.renderMenu(item.children)}
+                    </SubMenu>
+                )
+
+            }
+        });
+
+        return result
+    }
+
     render() {
         const {location} = this.props;
+        const {defaultSelectedKeys, defaultOpenKeys} = this.state;
         const pathSnippets = location.pathname.split('/').filter(i => i);
         const extraBreadcrumbItems = pathSnippets.map((_, index) => {
             const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
@@ -51,63 +86,34 @@ export default withRouter(class OutApp extends React.Component {
             </Breadcrumb.Item>
         )].concat(extraBreadcrumbItems);
         return (
-            <Layout>
-
-                <Header className="header">
-                    <div className="logo"/>
+            <Layout style={{height: '100%'}}>
+                <Sider  style={{width: 240}}>
+                    <div className="logo" />
                     <Menu
+                        onClick={this.handleClick}
+                        defaultSelectedKeys={defaultSelectedKeys}
+                        defaultOpenKeys={defaultOpenKeys}
+                        mode="inline"
                         theme="dark"
-                        mode="horizontal"
-                        defaultSelectedKeys={['2']}
-                        style={{lineHeight: '64px'}}
                     >
-                        <Menu.Item key="1">1</Menu.Item>
-                        <Menu.Item key="2">2</Menu.Item>
-                        <Menu.Item key="3">3</Menu.Item>
-                        <Menu.Item key="4d">4</Menu.Item>
-                        <Menu.Item key="5f">5</Menu.Item>
-                        <Menu.Item key="6f">6</Menu.Item>
+                        {this.renderMenu(MenuData)}
                     </Menu>
-                </Header>
+                </Sider>
+
                 <Layout>
-                    <Sider width={200} style={{background: '#fff'}}>
-                        <Menu
-                            mode="inline"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            style={{height: '100%', borderRight: 0}}
-                        >
-                            <SubMenu key="sub1" title={<span><Icon type="user"/>subnav 1</span>}>
-                                <Menu.Item key="1"><Link to="/detail/1234" replace>nav 1</Link></Menu.Item>
-                                <Menu.Item key="2"><Link to="/a" replace>nav 2</Link></Menu.Item>
-                                <Menu.Item key="3"><Link to="/b" replace>nav 3</Link></Menu.Item>
-                                <Menu.Item key="4"><Link to="/redux" replace>redux</Link></Menu.Item>
-                                <Menu.Item key="5f"><Link to="/parent" replace>parent</Link></Menu.Item>
-                                <Menu.Item key="6f"><Link to="/parent/child" replace>parent/child</Link></Menu.Item>
-                            </SubMenu>
-                            <SubMenu key="sub2" title={<span><Icon type="laptop"/>subnav 2</span>}>
-                                <Menu.Item key="5">option5</Menu.Item>
-                                <Menu.Item key="6">option6</Menu.Item>
-                                <Menu.Item key="7">option7</Menu.Item>
-                                <Menu.Item key="8">option8</Menu.Item>
-                            </SubMenu>
-                            <SubMenu key="sub3" title={<span><Icon type="notification"/>subnav 3</span>}>
-                                <Menu.Item key="9">option9</Menu.Item>
-                                <Menu.Item key="10">option10</Menu.Item>
-                                <Menu.Item key="11">option11</Menu.Item>
-                                <Menu.Item key="12">option12</Menu.Item>
-                            </SubMenu>
-                        </Menu>
-                    </Sider>
-                    <Layout style={{padding: '0 24px 24px'}}>
-                        <Breadcrumb style={{margin: '12px 0'}}>
+                    <Header style={{ background: '#ececec', padding: 0 }}>
+                        <Breadcrumb style={{marginLeft: 20}}>
                             {breadcrumbItems}
                         </Breadcrumb>
-                        <Content style={{background: '#fff', padding: 24, margin: 0, minHeight: 280}}>
-                          {this.props.children}
-                        </Content>
-                    </Layout>
-                </Layout>
+                    </Header>
+
+                    <Content className="main-content">
+                        {this.props.children}
+                    </Content>
+                    <Footer style={{ textAlign: 'center' }}>
+                      by 解园园
+                    </Footer>
+            </Layout>
             </Layout>
         )
     }
