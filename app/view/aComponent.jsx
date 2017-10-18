@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import TestAction from "../actions/aAction/test.jsx";
 import TestStore from "../stores/aStore/test.jsx";
 import {Button, Table} from 'antd'
@@ -39,6 +38,7 @@ class Acomponent extends React.Component {
     }
 
     render() {
+        debugger;
         return (
             <div>
                 <Button type="primary" onClick={this.onSearchClick.bind(this)}>查 询</Button>

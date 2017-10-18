@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import {Button} from 'antd';
 import PropTypes from 'prop-types'
 
 class Counter extends Component {
     constructor(props) {
-        debugger;
         super(props);
         this.incrementAsync = this.incrementAsync.bind(this);
         this.incrementIfOdd = this.incrementIfOdd.bind(this);
@@ -24,23 +24,23 @@ class Counter extends Component {
         const { value, onIncrement, onDecrement } = this.props;
         return (
             <p>
-                Clicked: {value} times
+                点击: {value} 次数<br/>
                 {' '}
-                <button onClick={onIncrement}>
+                <Button onClick={onIncrement}>
                     +
-                </button>
+                </Button>
                 {' '}
-                <button onClick={onDecrement}>
+                <Button onClick={onDecrement}>
                     -
-                </button>
+                </Button>
                 {' '}
-                <button onClick={this.incrementIfOdd}>
+                <Button onClick={this.incrementIfOdd}>
                     Increment if odd
-                </button>
+                </Button>
                 {' '}
-                <button onClick={this.incrementAsync}>
+                <Button onClick={this.incrementAsync}>
                     Increment async
-                </button>
+                </Button>
             </p>
         )
     }

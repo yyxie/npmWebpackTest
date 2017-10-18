@@ -13,6 +13,7 @@ const breadcrumbNameMap = {
     '/redux': 'redux',
     '/parent': 'parent',
     '/parent/child': 'child',
+    '/detail': 'detail',
     '/detail/id': 'id',
 };
 

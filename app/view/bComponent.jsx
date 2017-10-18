@@ -1,6 +1,5 @@
 import React from 'react';
 import TestAction from "../actions/bAction/test.jsx";
-/*import TestStore from "../stores/bStore/test.jsx";*/
 import {Button, Table} from 'antd'
 
 const {Column} = Table;
@@ -18,8 +17,7 @@ class Bcomponent extends React.Component {
 
     componentDidMount() {
         this.existed = true;
-        //TestStore.listen(this._onChange.bind(this));
-        //TestAction.getList();
+        this.getList();
     }
 
     componentWillUnmount() {
@@ -27,13 +25,11 @@ class Bcomponent extends React.Component {
     }
 
     onSearchClick() {
-        debugger;
-        const request = TestAction.getList.triggerAsync();
-
-        console.log(request);
-
+       this.getList();
+    }
+    getList() {
+        const request = TestAction.getList();
         request.then(result => {
-
             if (this.existed) {
                 if (result.errorCode == 0 && result.data) {
 
@@ -41,7 +37,7 @@ class Bcomponent extends React.Component {
                 } else
                     this.setState({list: result.data});
             }
-        }).catch( err => {
+        }).catch(err => {
             alert("warning");
         });
     }

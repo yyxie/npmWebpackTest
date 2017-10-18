@@ -1,7 +1,7 @@
 'use strict';
 
 import Reflux from 'reflux';
-import TestAction from '../../actions/bAction/test.jsx';
+import TestAction from '../../actions/bAction/test';
 
 let testState = {
     data: []

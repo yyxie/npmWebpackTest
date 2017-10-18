@@ -10,6 +10,7 @@ import bComponent from './view/bComponent.jsx';
 import ReduxComponent from './view/ReduxTest.jsx';
 import Parent from './view/Parent.jsx';
 import Login from './view/login.jsx';
+import ReduxTest from './view/ReduxTest.jsx';
 import NoMatch from './view/noMatch.jsx';
 
 
@@ -37,17 +38,18 @@ const outRoute = (
             <Route path="/" render={(match) => {
 
                 if (match.location.pathname == '/login') {
-                   return <Route path="/login" component={Login}/>
+                   return <Route name="login" path="/login" component={Login}/>
                 } else {
                    return <App>
                         <Switch>
                             <Redirect exact from="/" to="/a"/>
-                            <Route path="/a" component={aComponent}/>
-                            <Route path="/b" component={bComponent}/>
-                            <Route path="/detail/:id" component={Detail}/>
-                            <Route path="/redux" component={ReduxComponent}/>
-                            <Route path='/parent/:child' component={Parent}/>
-                            <Route component={NoMatch}/>
+                            <Route name="aComponent" path="/a" component={aComponent}/>
+                            <Route name="bComponent" path="/b" component={bComponent}/>
+                            <Route name="Detail" path="/detail/:id" component={Detail}/>
+                            <Route name="ReduxComponent" path="/redux" component={ReduxComponent}/>
+                            <Route name="Parent" path='/parent/:child' component={Parent}/>
+                            <Route name="ReduxTest" path='/counter' component={ReduxTest}/>
+                            <Route name="NoMatch" component={NoMatch}/>
                         </Switch>
                     </App>
                 }

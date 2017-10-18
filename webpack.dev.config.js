@@ -54,7 +54,7 @@ var config = {
                 //请注意loader里的写法，有一些低版本的例子中是过时的写法
                 loader: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: "css-loader"
+                    use: "css-loader!autoprefixer-loader" //autoprefixer-loader 用于解析CSS文件并且添加浏览器前缀到CSS规则里，使用Can I Use的数据来决定哪些前缀是需要的。
                 })
             },
              {
@@ -86,6 +86,7 @@ var config = {
             filename: '[name].css',
             allChunks: true
         }),
+
 
     ]
 };

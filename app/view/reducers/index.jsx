@@ -1,5 +1,4 @@
 export default (state = 0, action) => {
-    debugger;
     switch (action.type) {
         case 'INCREMENT':
             return state + 1
