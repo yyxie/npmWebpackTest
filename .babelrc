@@ -3,5 +3,6 @@
     "es2015",
     "react",
     "stage-0"
-  ]
+  ],
+  "plugins": ["transform-decorators-legacy"]/*使得项目中可以使用es6的修饰器@*/
 }

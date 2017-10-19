@@ -21,6 +21,7 @@ class aComponent extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
 
+                Cookies.set('isLogin', 'hasLogin', {expires: 1});
                 history.push('/');
             }
         });

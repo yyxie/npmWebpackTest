@@ -1,9 +1,11 @@
 import React from 'react';
+import {Button, Table} from 'antd';
+
 import TestAction from "../actions/bAction/test.jsx";
-import {Button, Table} from 'antd'
+import HighComponent from './highComponent/index.jsx';
 
 const {Column} = Table;
-
+@HighComponent
 class Bcomponent extends React.Component {
     constructor(props) {
         super(props);

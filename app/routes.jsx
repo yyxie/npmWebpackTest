@@ -11,6 +11,7 @@ import ReduxComponent from './view/ReduxTest.jsx';
 import Parent from './view/Parent.jsx';
 import Login from './view/login.jsx';
 import ReduxTest from './view/ReduxTest.jsx';
+import HighComponent from './view/highComponent/'
 import NoMatch from './view/noMatch.jsx';
 
 
@@ -49,6 +50,7 @@ const outRoute = (
                             <Route name="ReduxComponent" path="/redux" component={ReduxComponent}/>
                             <Route name="Parent" path='/parent/:child' component={Parent}/>
                             <Route name="ReduxTest" path='/counter' component={ReduxTest}/>
+                            <Route name="highComponent" path='/highcomponent' component={HighComponent}/>
                             <Route name="NoMatch" component={NoMatch}/>
                         </Switch>
                     </App>

@@ -2,7 +2,7 @@ import React from 'react';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import {Link, withRouter, Switch, Route} from 'react-router-dom';
 import './style.css';
-import Util from './util.jsx';
+
 import MenuData from './menu.config.js';
 
 const {SubMenu} = Menu;
@@ -29,7 +29,7 @@ export default withRouter(class OutApp extends React.Component {
 
     componentWillMount() {
         debugger;
-        Util.requireAuth(this.props.history, this.props.location);
+        //Util.requireAuth(this.props.history, this.props.location);
     }
 
     renderMenu = (data) => {

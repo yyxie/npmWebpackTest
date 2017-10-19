@@ -1,10 +1,14 @@
 import React from 'react';
+import {Button, Table} from 'antd'
+import {withRouter} from 'react-router-dom';
+import HighComponent from './highComponent/index.jsx';
 import TestAction from "../actions/aAction/test.jsx";
 import TestStore from "../stores/aStore/test.jsx";
-import {Button, Table} from 'antd'
+
 
 const {Column} = Table;
-
+@withRouter
+@HighComponent
 class Acomponent extends React.Component {
     constructor(props) {
         super(props);
