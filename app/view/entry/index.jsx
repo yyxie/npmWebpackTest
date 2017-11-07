@@ -28,7 +28,6 @@ export default withRouter(class OutApp extends React.Component {
     }
 
     componentWillMount() {
-        debugger;
         //Util.requireAuth(this.props.history, this.props.location);
     }
 

@@ -10,7 +10,7 @@ var APP_PATH = path.resolve(__dirname, 'app');
 // 项目源码路径
 var SRC_PATH = path.join(__dirname, 'src');
 // 产出路径
-var DIST_PATH = path.join(__dirname, 'dist');
+var DIST_PATH = path.join(__dirname, 'dist');//__dirname 是node.js中的一个全局变量，它指向当前执行脚本所在的目录
 // 使用缓存
 var CACHE_PATH = path.join(__dirname, 'cache');
 
