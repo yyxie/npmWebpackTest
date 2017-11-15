@@ -9,7 +9,7 @@ class Parent extends React.Component {
     }
 
     renderChild() {
-        const {child} = this.props.match.params;
+        const {child} = this.props.computedMatch.params;
         switch(child){
             case 'child':
                 return <Child/>;

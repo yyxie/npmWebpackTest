@@ -23,7 +23,7 @@ class Acomponent extends React.Component {
 
     render() {
     debugger;
-        const {id} = this.props.match.params;
+        const {id} = this.props.computedMatch.params;
         return (
             <div>
                 {id}

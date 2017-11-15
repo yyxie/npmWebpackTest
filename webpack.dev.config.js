@@ -14,11 +14,8 @@ var SRC_PATH = path.join(__dirname, 'src');
 // 产出路径
 var DIST_PATH = path.join(__dirname, 'dist');
 // 使用缓存
-var CACHE_PATH = path.join(__dirname, 'cache');
-var PUB_PATH = path.join(__dirname, 'public');
 
-// 是否是开发环境
-var __DEV__ = process.env.NODE_ENV !== 'production';
+
 
 var config = {
     entry: {//打包的入口文件，一个字符串或者一个对象
@@ -65,6 +62,7 @@ var config = {
                 loader: "url-loader?limit=8192"
             },
         ]
+            //.concat(bundleLoaders)
     },
 
     resolve: {

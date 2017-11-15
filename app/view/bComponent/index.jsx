@@ -1,15 +1,11 @@
 import React from 'react';
-import {Button, Table} from 'antd'
+import {Button, Table} from 'antd';
 import {withRouter} from 'react-router-dom';
-import HighComponent from './highComponent/index.jsx';
-import TestAction from "../actions/aAction/test.jsx";
-import TestStore from "../stores/aStore/test.jsx";
-
+import TestAction from "../../actions/bAction/test.jsx";
 
 const {Column} = Table;
 @withRouter
-@HighComponent
-class Acomponent extends React.Component {
+class Bcomponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,27 +18,39 @@ class Acomponent extends React.Component {
 
     componentDidMount() {
         this.existed = true;
-        TestStore.listen(this._onChange.bind(this));
-        TestAction.getList();
-    }
-
-    onSearchClick() {
-        TestAction.getList();
+        this.getList();
     }
 
     componentWillUnmount() {
         this.existed = false;
     }
 
-    _onChange() {
-        if (this.existed) {
-            // 重新获取TodoStore的数据，并通过调用setState，触发re-render
-            this.setState({list: TestStore.getInfoState()});
-        }
+    onSearchClick() {
+       this.getList();
+    }
+    getList() {
+        const request = TestAction.getList();
+        request.then(result => {
+            if (this.existed) {
+                if (result.errorCode == 0 && result.data) {
+
+                    this.setState({list: result.data});
+                } else
+                    this.setState({list: result.data});
+            }
+        }).catch(err => {
+            alert("warning");
+        });
     }
 
+    /* _onChange() {
+     if (this.existed) {
+     // 重新获取TodoStore的数据，并通过调用setState，触发re-render
+     this.setState({list: TestStore.getInfoState()});
+     }
+     }*/
+
     render() {
-        debugger;
         return (
             <div>
                 <Button type="primary" onClick={this.onSearchClick.bind(this)}>查 询</Button>
@@ -63,11 +71,10 @@ class Acomponent extends React.Component {
                         dataIndex="date"
                         key="date"
                     />
-
                 </Table>
             </div>
         )
     }
 }
 
-export default Acomponent;
+export default Bcomponent;
