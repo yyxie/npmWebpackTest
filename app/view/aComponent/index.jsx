@@ -43,7 +43,7 @@ class Acomponent extends React.Component {
 
         return (
             <div>
-                <Button type="primary" onClick={this.onSearchClick.bind(this)}>搜 索</Button>
+                <Button type="primary" onClick={this.onSearchClick.bind(this)}>查 询</Button>
                 <Table dataSource={this.state.list}>
 
                     <Column

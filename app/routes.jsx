@@ -11,12 +11,17 @@ import ReduxComponent from 'bundle-loader?lazy&name=ReduxTest!./view/ReduxTest.j
 import Parent from 'bundle-loader?lazy&name=Parent!./view/Parent.jsx';
 import Login from './view/login.jsx';
 import ReduxTest from 'bundle-loader?lazy&name=ReduxTest!./view/ReduxTest.jsx';
+import HommilyEditor from  'bundle-loader?lazy&name=MdEditor!./view/editor/HommilyEditor.jsx';
+import ReactQuill from  'bundle-loader?lazy&name=ReactQuill!./view/editor/react-quill.jsx';
+import EventDemo from 'bundle-loader?lazy&name=EventDemp!./view/event/';
+import SetStateDemo from 'bundle-loader?lazy&name=setState!./view/setStateTest';
+import ReactEmojiDemo from 'bundle-loader?lazy&name=reactEmoji!./view/emoji/test-react-emoji';
+import EmojiOneDemo from 'bundle-loader?lazy&name=emojioneDemo!./view/emoji/emojione-test';
 
 import NoMatch from './view/noMatch.jsx';
 
 
-
-import Bundle from './view/lazyload';
+import Bundle from './view/bundle/';
 import HighComponent from './view/highComponent/'
 
 const Loading = function () {
@@ -62,20 +67,21 @@ const checkSignin = function (cName) {
         return false;
     } else {
         return true;
-    };
+    }
+    ;
 }
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={props => (
-       checkSignin() ? (
-           <Bundle load={Component}>
-               {
-                   (Async) => Async ? <Async {...rest}/> : <Loading/>
-               }
-           </Bundle>
+        checkSignin() ? (
+            <Bundle load={Component}>
+                {
+                    (Async) => Async ? <Async {...rest}/> : <Loading/>
+                }
+            </Bundle>
         ) : (
             <Redirect to={{
                 pathname: '/login',
-                state: { from: props.location }
+                state: {from: props.location}
             }}/>
         )
     )}/>
@@ -84,33 +90,32 @@ const outRoute = (
     <Router>
         <switch>
             <Route path={"/"}
-                   /*component={About}*/
-                  render={(match) => {
+                /*component={About}*/
+                   render={(match) => {
 
-                 if (match.location.pathname == '/login') {
-                    return <Route name="login" path="/login" component={Login}/>
-                 } else {
-                    return <App>
-                         <Switch>
-                             <Redirect exact from="/" to="/a"/>
-                             <PrivateRoute path="/a" component={aComponent}/>
-                             <PrivateRoute path="/b" component={bComponent}/>
-                           <PrivateRoute path="/detail/:id" component={Detail}/>
-                             <PrivateRoute path="/redux" component={ReduxComponent}/>
-                          <PrivateRoute path="/parent/:child" component={Parent}/>
-                             <PrivateRoute path="/counter" component={ReduxTest}/>
-                          {/*  <Route name="aComponent" path="/a" component={createComponent(aComponent)}/>
-                             <Route name="bComponent" path="/b" component={createComponent(bComponent)}/>
-                             <Route name="Detail" path="/detail/:id" component={Detail}/>
-                             <Route name="ReduxComponent" path="/redux" component={ReduxComponent}/>
-                             <Route name="Parent" path='/parent/:child' component={Parent}/>
-                             <Route name="ReduxTest" path='/counter' component={ReduxTest}/>
-                             <Route name="highComponent" path='/highcomponent' component={HighComponent}/>*/}
-                             <Route name="NoMatch" component={NoMatch}/>
-                         </Switch>
-                     </App>
-                 }
-             }}
+                       if (match.location.pathname == '/login') {
+                           return <Route name="login" path="/login" component={Login}/>
+                       } else {
+                           return <App>
+                               <Switch>
+                                   <Redirect exact from="/" to="/a"/>
+                                   <PrivateRoute path="/a" component={aComponent}/>
+                                   <PrivateRoute path="/b" component={bComponent}/>
+                                   <PrivateRoute path="/detail/:id" component={Detail}/>
+                                   <PrivateRoute path="/redux" component={ReduxComponent}/>
+                                   <PrivateRoute path="/parent/:child" component={Parent}/>
+                                   <PrivateRoute path="/counter" component={ReduxTest}/>
+                                   <PrivateRoute path="/hommily-editor" component={HommilyEditor}/>
+                                   <PrivateRoute path="/react-quill" component={ReactQuill}/>
+                                   <PrivateRoute path="/event" component={EventDemo}/>
+                                   <PrivateRoute path="/setstate" component={SetStateDemo}/>
+                                   <PrivateRoute path="/reactemoji" component={ReactEmojiDemo}/>
+                                   <PrivateRoute path="/emoji-one" component={EmojiOneDemo}/>
+                                   <Route name="NoMatch" component={NoMatch}/>
+                               </Switch>
+                           </App>
+                       }
+                   }}
             />
         </switch>
     </Router>

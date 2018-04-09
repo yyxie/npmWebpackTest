@@ -6,7 +6,7 @@ import './style.css';
 import MenuData from './menu.config.js';
 
 const {SubMenu} = Menu;
-const { Header, Footer, Sider, Content } = Layout;
+const {Header, Footer, Sider, Content} = Layout;
 const breadcrumbNameMap = {
     '/a': 'a',
     '/b': 'b',
@@ -56,7 +56,7 @@ export default withRouter(class OutApp extends React.Component {
                 </span>
                         }
                     >
-                       {this.renderMenu(item.children)}
+                        {this.renderMenu(item.children)}
                     </SubMenu>
                 )
 
@@ -64,6 +64,10 @@ export default withRouter(class OutApp extends React.Component {
         });
 
         return result
+    }
+    handleOpenChange = (key) => {
+        debugger;
+        console.log(key);
     }
 
     render() {
@@ -87,13 +91,15 @@ export default withRouter(class OutApp extends React.Component {
         )].concat(extraBreadcrumbItems);
         return (
             <Layout style={{height: '100%'}}>
-                <Sider  style={{width: 240}}>
-                    <div className="logo" />
+                <Sider style={{width: 240}}>
+                    <div className="logo"/>
                     <Menu
                         onClick={this.handleClick}
+                        onOpenChange={this.handleOpenChange}
                         defaultSelectedKeys={defaultSelectedKeys}
                         defaultOpenKeys={defaultOpenKeys}
                         mode="inline"
+
                         theme="dark"
                     >
                         {this.renderMenu(MenuData)}
@@ -101,7 +107,7 @@ export default withRouter(class OutApp extends React.Component {
                 </Sider>
 
                 <Layout>
-                    <Header style={{ background: '#ececec', padding: 0 }}>
+                    <Header style={{background: '#ececec', padding: 0}}>
                         <Breadcrumb style={{marginLeft: 20}}>
                             {breadcrumbItems}
                         </Breadcrumb>
@@ -110,10 +116,10 @@ export default withRouter(class OutApp extends React.Component {
                     <Content className="main-content">
                         {this.props.children}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>
-                      by 解园园
+                    <Footer style={{textAlign: 'center'}}>
+                        by 解园园
                     </Footer>
-            </Layout>
+                </Layout>
             </Layout>
         )
     }

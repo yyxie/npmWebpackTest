@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 
@@ -19,7 +20,8 @@ var DIST_PATH = path.join(__dirname, 'dist');
 
 var config = {
     entry: {//打包的入口文件，一个字符串或者一个对象
-        app: [path.join(__dirname, "app/main.hot.dev.jsx")]
+        app: path.join(__dirname, "app/main.hot.dev.jsx"),
+        vendor: 'hommilyeditor'
     },
     output: { //配置打包的结果，一个对象
         filename: '[name].bundle.js',//这里面的name对应于entry中的键值对里面的键
@@ -84,8 +86,7 @@ var config = {
             filename: '[name].css',
             allChunks: true
         }),
-
-
+        new OpenBrowserPlugin({ url: 'http://localhost:8888' })
     ]
 };
 

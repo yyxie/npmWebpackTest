@@ -1,4 +1,5 @@
 import React from 'react'
+import { Provider } from 'react-redux';
 import {createStore} from 'redux'
 import Counter from './counter/index.jsx'
 import redux from './reducers/index.jsx'
@@ -7,17 +8,20 @@ const store = createStore(redux)
 export default class ReduxTest extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            counterVal: store.getState()
-        }
+
+        console.log(store.getState());
+        //
+        // this.state = {
+        //     counterVal: store.getState()
+        // }
     }
 
     componentDidMount() {
-        this.unsubscribe = store.subscribe(() => {
+      /* this.unsubscribe = store.subscribe(() => {
             this.setState({
-                counterVal: store.getState()
+                store: store
             })
-        })
+        })*/
     }
 
     componentWillUnmount() {
@@ -25,8 +29,8 @@ export default class ReduxTest extends React.Component {
     }
 
     render() {
-        debugger;
-        const {counterVal} = this.state;
+
+        //const {counterVal} = this.state;
         return (
          /*   <div>
                 Clicked: {counterVal} times
@@ -39,11 +43,13 @@ export default class ReduxTest extends React.Component {
                     -
                 </button>
             </div>*/
-            <Counter
-                value={counterVal}
-                onIncrement={() => store.dispatch({type: 'INCREMENT'})}
-                onDecrement={() => store.dispatch({type: 'DECREMENT'})}
-            />
+            <Provider store={store}>
+                <Counter
+                    /*value={counterVal}
+                    onIncrement={() => store.dispatch({type: 'INCREMENT'})}
+                    onDecrement={() => store.dispatch({type: 'DECREMENT'})}*/
+                />
+            </Provider>
         )
     }
 }

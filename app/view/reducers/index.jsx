@@ -1,4 +1,5 @@
-export default (state = 0, action) => {
+import { combineReducers } from 'redux';
+let defReducer = (state = 0, action) => {
     switch (action.type) {
         case 'INCREMENT':
             return state + 1
@@ -8,3 +9,19 @@ export default (state = 0, action) => {
             return state
     }
 }
+let asyncReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'FETCH_POSTS':
+            debugger;
+            return action.data
+        case 'DECREMENT':
+            return state
+        default:
+            return state
+    }
+
+}
+export default combineReducers({
+    defReducer,
+    asyncReducer
+})

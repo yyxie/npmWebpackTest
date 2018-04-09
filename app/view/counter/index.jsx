@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import {Button} from 'antd';
-import PropTypes from 'prop-types'
-
+import {Button, Table} from 'antd';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import requestData from '../action'
+const Column = Table.Column;
 class Counter extends Component {
     constructor(props) {
         super(props);
-        this.incrementAsync = this.incrementAsync.bind(this);
-        this.incrementIfOdd = this.incrementIfOdd.bind(this);
+       /* this.incrementAsync = this.incrementAsync.bind(this);
+        this.incrementIfOdd = this.incrementIfOdd.bind(this);*/
     }
 
     incrementIfOdd() {
@@ -21,7 +23,7 @@ class Counter extends Component {
 
     render() {
         debugger;
-        const { value, onIncrement, onDecrement } = this.props;
+        /*const { value, onIncrement, onDecrement } = this.props;
         return (
             <p>
                 点击: {value} 次数<br/>
@@ -42,14 +44,60 @@ class Counter extends Component {
                     Increment async
                 </Button>
             </p>
+        )*/
+        const {requestData, list} = this.props;
+        return (
+            <div>
+                <Button onClick={requestData}>
+                    请求数据
+                </Button>
+                <Table dataSource={list}>
+
+                    <Column
+                        title="sumNumber"
+                        dataIndex="sumNumber"
+                        key="sumNumber"
+                    />
+                    <Column
+                        title="type"
+                        dataIndex="type"
+                        key="type"
+                    />
+                    <Column
+                        title="date"
+                        dataIndex="date"
+                        key="date"
+                    />
+
+                </Table>
+            </div>
         )
     }
 }
 
-Counter.propTypes = {
+/*Counter.propTypes = {
     value: PropTypes.number.isRequired,
     onIncrement: PropTypes.func.isRequired,
     onDecrement: PropTypes.func.isRequired
-}
+}*/
 
-export default Counter
+const mapDispatchToProps = (
+    dispatch,
+    ownProps
+) => {
+    return {
+        requestData: () => {
+            requestData();
+        }
+    };
+}
+const mapStateToProps = (state, ownProps) => {
+    debugger;
+    return {
+        list: state.data
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Counter)

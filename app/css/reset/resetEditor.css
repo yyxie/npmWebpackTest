@@ -1,0 +1,10 @@
+.RichEditor .container {
+    background-color: #fff;
+    z-index: 999;
+    width: 45px;
+    margin-left: 0;
+}
+.RichEditor .RichEditor-editor {
+    float: left;
+    margin-left: 45px;
+}

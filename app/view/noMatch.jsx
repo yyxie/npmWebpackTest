@@ -1,6 +1,5 @@
+
 import React from 'react';
-
-
 
 class NoMatch extends React.Component {
     constructor(props) {
@@ -17,4 +16,6 @@ class NoMatch extends React.Component {
     }
 }
 
+
 export default NoMatch;
+
