@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {Button, Table} from 'antd';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import requestData from '../action'
+import requestData from '../action/counter'
+
 const Column = Table.Column;
+
 class Counter extends Component {
     constructor(props) {
         super(props);
-       /* this.incrementAsync = this.incrementAsync.bind(this);
-        this.incrementIfOdd = this.incrementIfOdd.bind(this);*/
+        /* this.incrementAsync = this.incrementAsync.bind(this);
+         this.incrementIfOdd = this.incrementIfOdd.bind(this);*/
     }
 
     incrementIfOdd() {
@@ -21,8 +23,11 @@ class Counter extends Component {
         setTimeout(this.props.onIncrement, 1000)
     }
 
+    getList() {
+        this.props.dispatch();
+    }
+
     render() {
-        debugger;
         /*const { value, onIncrement, onDecrement } = this.props;
         return (
             <p>
@@ -81,20 +86,18 @@ class Counter extends Component {
     onDecrement: PropTypes.func.isRequired
 }*/
 
-const mapDispatchToProps = (
-    dispatch,
-    ownProps
-) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
         requestData: () => {
-            requestData();
+            dispatch(requestData());
         }
     };
 }
-const mapStateToProps = (state, ownProps) => {
-    debugger;
+const mapStateToProps = (state, props) => {
+    console.warn(state);
     return {
-        list: state.data
+        list: state.counter.data,
+        // cityList: state.basicData.data,
     }
 }
 export default connect(
