@@ -1,5 +1,5 @@
 var url = '/saas20/api/2017063002/Apartment/free/largescreenview/energy/consumption';
-let requestData = () => dispatch => {
+let requestData = (dispatch) => {
     fetch(url, {
         method: "POST"
     })
