@@ -87,14 +87,14 @@ const mapDispatchToProps = (
 ) => {
     return {
         requestData: () => {
-            requestData();
+           requestData(dispatch);
         }
     };
 }
 const mapStateToProps = (state, ownProps) => {
     debugger;
     return {
-        list: state.data
+        list: state.asyncReducer.data
     }
 }
 export default connect(
